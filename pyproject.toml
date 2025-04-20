@@ -1,0 +1,7 @@
+[project]
+name = "news-archive"
+version = "0.1.0"
+description = "News archive"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
