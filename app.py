@@ -6,7 +6,4 @@ app = Flask(__name__)
 
 @app.route('/robots.txt')
 def index():
-    return '''
-User-agent: *
-Disallow: /
-'''
+    return 'User-agent: *\nDisallow: /', 200, {'Content-Type': 'text/plain'}
