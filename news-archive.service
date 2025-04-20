@@ -1,0 +1,13 @@
+#
+[Unit]
+Description=News archive service
+
+[Service]
+ExecStart=/usr/bin/env mise exec uv@latest -- uv run gunicorn --bind unix:/home/service/tmp/news-archive.sock --umask 0000 app:app app.py
+Restart=on-failure
+RestartSec=60
+Type=simple
+WorkingDirectory=/home/service/news-archive
+
+[Install]
+WantedBy=default.target
