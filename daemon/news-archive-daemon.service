@@ -3,7 +3,7 @@
 Description=News archive daemon service
 
 [Service]
-ExecStart=/usr/bin/env mise exec uv@latest -- uv run daemon/app.py
+ExecStart=/usr/bin/env mise exec uv@latest -- uv run --python pypy3 daemon/app.py
 Restart=on-failure
 RestartSec=60
 Type=simple
