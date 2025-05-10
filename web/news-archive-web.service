@@ -1,6 +1,6 @@
 #
 [Unit]
-Description=News archive service
+Description=News archive web service
 
 [Service]
 ExecStart=/usr/bin/env mise exec uv@latest -- uv run gunicorn --bind unix:/home/service/tmp/news-archive.sock --umask 0000 web.app:app web/app.py
