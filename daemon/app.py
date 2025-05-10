@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from apscheduler import Scheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 
-with Scheduler() as scheduler:
-    scheduler.run_until_stopped()
+BlockingScheduler().start()
