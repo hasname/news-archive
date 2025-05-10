@@ -11,7 +11,10 @@ mise exec uv@latest -- uv venv --python pypy3
 
 # systemd
 mkdir -p ~/.config/systemd/user || true
-cp web/"${PROJECT_NAME}".service ~/.config/systemd/user/"${PROJECT_NAME}".service
+cp daemon/"${PROJECT_NAME}"-daemon.service ~/.config/systemd/user/"${PROJECT_NAME}"-daemon.service
+cp web/"${PROJECT_NAME}"-web.service ~/.config/systemd/user/"${PROJECT_NAME}"-web.service
 systemctl --user daemon-reload
-systemctl --user enable "${PROJECT_NAME}".service
-systemctl --user restart "${PROJECT_NAME}".service
+systemctl --user enable "${PROJECT_NAME}"-daemon.service
+systemctl --user enable "${PROJECT_NAME}"-web.service
+systemctl --user restart "${PROJECT_NAME}"-daemon.service
+systemctl --user restart "${PROJECT_NAME}"-web.service
