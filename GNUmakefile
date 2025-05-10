@@ -1,17 +1,20 @@
 #
-.DEFAULT_GOAL:=	test
-.PHONY:		deploy lint test
+.DEFAULT_GOAL:=	help
+.PHONY:		deploy help lint test
 
 #
 # Targets
-deploy::
+deploy::	# Deploy
 	rsync -Favz --delete-after ./ ${SSH_USER}@${SSH_HOST}:news-archive/
 	ssh ${SSH_USER}@${SSH_HOST} 'cd news-archive && scripts/deploy.sh'
 
-lint::
+help::		# Show this help
+	@grep -E '^[a-zA-Z_-]+::' GNUmakefile | sort | awk -F'[:#]' '{print $$1 ":\t" $$NF}'
+
+lint::		# Run linter
 	uv run ruff check
 
-test::
+test::		# Run test cases
 	@true
 
 -include GNUmakefile.local
