@@ -12,7 +12,7 @@ help::		# Show this help
 	@grep -E '^[a-zA-Z_-]+::' GNUmakefile | sort | awk -F'[:#]' '{print $$1 ":\t" $$NF}'
 
 lint::		# Run linter
-	uv run ruff check
+	uv run --python pypy3 ruff check
 
 test::		# Run test cases
 	@true
