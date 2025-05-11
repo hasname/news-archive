@@ -2,11 +2,9 @@
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 from dotenv import load_dotenv
-import os
-import requests
 
 def SlackTestJob():
-    url = os.environ.get('SLACK_WEBHOOK_URL')
+    pass
 
 def main():
     load_dotenv()
