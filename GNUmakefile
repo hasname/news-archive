@@ -1,9 +1,12 @@
 #
 .DEFAULT_GOAL:=	help
-.PHONY:		deploy help lint test
+.PHONY:		db deploy help lint test
 
 #
 # Targets
+db::		# Upgrade (or initialize if not existed) database
+	uv run --python pypy3 alembic upgrade head
+
 deploy::	# Deploy
 	rsync -Favz --delete-after ./ ${SSH_USER}@${SSH_HOST}:news-archive/
 	ssh ${SSH_USER}@${SSH_HOST} 'cd news-archive && scripts/deploy.sh'
