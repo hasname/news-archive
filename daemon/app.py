@@ -4,6 +4,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
+import datetime
 import requests
 import urllib.parse
 
@@ -19,7 +20,8 @@ def CnaJob():
 
         # append to /tmp/url-cna.txt
         with open('/tmp/url-cna.txt', 'a') as f:
-            f.write(f'{link} {title}\n')
+            now = datetime.datetime.now()
+            f.write(f'{now} {link} {title}\n')
 
 def main():
     load_dotenv()
