@@ -10,7 +10,7 @@ import urllib.parse
 
 def CnaJob():
     all_url = 'https://www.cna.com.tw/list/aall.aspx'
-    res = requests.get(url)
+    res = requests.get(all_url)
     soup = BeautifulSoup(res.text)
     for e in soup.select('#jsMainList > li'):
         link_url_relative = e.select('a')[0]['href']
