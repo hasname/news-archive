@@ -20,13 +20,13 @@ def CnaJob():
 
         # append to /tmp/url-cna.txt
         with open('/tmp/url-cna.txt', 'a') as f:
-            now = datetime.datetime.now()
-
             res = requests.get(link)
             soup = BeautifulSoup(res.text)
 
             article_title = soup.select('.centralContent h1')[0].text
             article_content = soup.select('.centralContent')[0].text
+
+            now = datetime.datetime.now()
 
             f.write(f'* {now} {link_url} {link_title}\n')
             f.write(f'* {now} {link_url} {article_title} {article_content}\n')
