@@ -3,6 +3,7 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+from readability import Document
 
 import datetime
 import requests
@@ -26,10 +27,16 @@ def CnaJob():
             article_title = soup.select('.centralContent h1')[0].text
             article_content = soup.select('.centralContent')[0].text
 
+            # arc90's readability
+            doc = Document(res.text)
+            readability_title = doc.title()
+            readability_summary = doc.summary()
+
             now = datetime.datetime.now()
 
-            f.write(f'* {now} {link_url} {link_title}\n')
-            f.write(f'* {now} {link_url} {article_title} {article_content}\n')
+            f.write(f'* cna_aall.aspx: {now} {link_url} {link_title}\n')
+            f.write(f'* DOM-based: {now} {link_url} {article_title} {article_content}\n')
+            f.write(f'* Readability-based: {now} {link_url} {readability_title} {readability_summary}\n')
 
 def main():
     load_dotenv()
